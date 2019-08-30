@@ -18,8 +18,8 @@ module.exports = {
 
     history.push(historyItem);
 
-    if (history.length > 100) {
-      history.splice(history.length - 100, 100);
+    if (history.length > numberOfHistoryItems) {
+      history.splice(history.length - numberOfHistoryItems, numberOfHistoryItems);
     }
   }
 };
