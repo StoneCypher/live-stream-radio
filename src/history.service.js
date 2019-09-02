@@ -1,14 +1,18 @@
 // Singleton service to store the past 100 activites
 const history = [];
+
 let numberOfHistoryItems = 100;
 
 module.exports = {
+
   getHistory: () => {
     return history;
   },
+
   setNumberOfHistoryItems: number => {
     numberOfHistoryItems = number;
   },
+
   addItemToHistory: item => {
     const historyItem = {
       ...item
@@ -18,8 +22,9 @@ module.exports = {
 
     history.push(historyItem);
 
-    if (history.length > 100) {
-      history.splice(history.length - 100, 100);
+    if (history.length > numberOfHistoryItems) {
+      history.splice(history.length - numberOfHistoryItems, numberOfHistoryItems);
     }
   }
+
 };
