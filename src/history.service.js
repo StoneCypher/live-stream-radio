@@ -14,17 +14,8 @@ module.exports = {
   },
 
   addItemToHistory: item => {
-    const historyItem = {
-      ...item
-    };
-
-    historyItem.date = Date.now();
-
-    history.push(historyItem);
-
-    if (history.length > numberOfHistoryItems) {
-      history.splice(history.length - numberOfHistoryItems, numberOfHistoryItems);
-    }
+    history.push({ ...item, date: Date.now() });
+    history.splice( Math.max(0, history.length - numberOfHistoryItems), numberOfHistoryItems);
   }
 
 };
