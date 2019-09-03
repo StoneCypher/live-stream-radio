@@ -1,21 +1,14 @@
-// Singleton service to store the past 100 activites
-const history = [];
+let history = [],
+  numberOfHistoryItems = 3;
 
-let numberOfHistoryItems = 100;
+const getHistory = () => history,
+  setNumberOfHistoryItems = number => (numberOfHistoryItems = number);
 
-module.exports = {
-
-  getHistory: () => {
-    return history;
-  },
-
-  setNumberOfHistoryItems: number => {
-    numberOfHistoryItems = number;
-  },
-
-  addItemToHistory: item => {
-    history.push({ ...item, date: Date.now() });
-    history.splice( Math.max(0, history.length - numberOfHistoryItems), numberOfHistoryItems);
+function addItemToHistory(item) {
+  history.push({ ...item, date: Date.now() });
+  while (history.length > numberOfHistoryItems) {
+    history.shift();
   }
+}
 
-};
+module.exports = { getHistory, setNumberOfHistoryItems, addItemToHistory };
